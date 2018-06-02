@@ -1,3 +1,9 @@
 h1 {
     color: forestgreen;
 }
+
+.error-tip {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}

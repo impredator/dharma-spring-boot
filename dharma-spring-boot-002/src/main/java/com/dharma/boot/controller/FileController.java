@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,10 +24,10 @@ public class FileController {
     private String filePath;
 
     @RequestMapping(value = "upload")
-    @ResponseBody
-    public String upload(@RequestParam("dharmaFile") MultipartFile file) {
+    public String upload(@RequestParam("dharmaFile") MultipartFile file, ModelMap map) {
         if (file.isEmpty()) {
-            return "file empty";
+            map.put("error", "file empty");
+            return "upload";
         }
 
         String fileName = file.getOriginalFilename();
@@ -45,11 +46,13 @@ public class FileController {
 
         try {
             file.transferTo(dest);
-            return "upload done:" + filePath + fileName;
+            map.put("file", fileName);
+            return "upload";
         } catch (IllegalStateException | IOException e) {
             e.printStackTrace();
         }
-        return "upload failed";
+        map.put("error", "upload failed");
+        return "upload";
     }
 
 }

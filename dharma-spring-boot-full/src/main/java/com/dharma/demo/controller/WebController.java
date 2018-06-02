@@ -13,4 +13,14 @@ public class WebController {
         map.put("title", "FIRST BLOOD");
         return "index";
     }
+
+    @RequestMapping(value = "/upload")
+    public String upload() {
+        return "upload";
+    }
+
+    @RequestMapping("/error")
+    public String error() {
+        throw new RuntimeException("test dharma exception");
+    }
 }

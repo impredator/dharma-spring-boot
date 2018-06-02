@@ -14,10 +14,11 @@
         <input type="submit" value="上传" />
     </form>
 
-    <#if file??>
-        <img src="${file}" />
+    <#if error??>
+        <h3>${error}</h3>
+    <#elseif file??>
+        <img src="/upload/${file}" />
     </#if>
-
 
 </body>
 </html>
