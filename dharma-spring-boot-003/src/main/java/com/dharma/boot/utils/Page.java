@@ -1,6 +1,3 @@
-/**
- * 2015-2016 龙果学院 (www.roncoo.com)
- */
 package com.dharma.boot.utils;
 
 import java.io.Serializable;

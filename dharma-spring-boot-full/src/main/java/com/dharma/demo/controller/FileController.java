@@ -28,26 +28,34 @@ public class FileController {
             return "file empty";
         }
 
-        String fileName = file.getOriginalFilename();
-        logger.info("filer name: " + fileName);
+        String fileName = generateFileName(file.getOriginalFilename());
 
-        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        File dest = makeFile(filePath + fileName);
+
+        try {
+            file.transferTo(dest);
+            return "<img src='/upload/" + fileName + "' />";
+        } catch (IllegalStateException | IOException e) {
+            e.printStackTrace();
+        }
+        return "upload failed";
+    }
+
+    private String generateFileName(String originalName) {
+        logger.info("filer name: " + originalName);
+        String suffixName = originalName.substring(originalName.lastIndexOf("."));
         logger.info("file suffix: " + suffixName);
 
-        fileName = UUID.randomUUID() + suffixName;
+        return UUID.randomUUID() + suffixName;
+    }
 
-        File dest = new File(filePath + fileName);
+    private File makeFile(String fileName) {
+        File dest = new File(fileName);
 
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
         }
 
-        try {
-            file.transferTo(dest);
-            return "upload done: " + filePath + fileName;
-        } catch (IllegalStateException | IOException e) {
-            e.printStackTrace();
-        }
-        return "upload failed";
+        return dest;
     }
 }

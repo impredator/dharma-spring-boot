@@ -1,9 +1,26 @@
 package com.dharma.demo.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="product")
 public class Product {
+
+    @Id
+    @GeneratedValue
     private Integer id;
+    @Column
     private String name;
+    @Column
     private Double price;
+
+    public Product() {
+    }
+
+    public Product(String name, Double price) {
+        this.name = name;
+        this.price = price;
+    }
 
     public Product(Integer id, String name, Double price) {
         this.id = id;
