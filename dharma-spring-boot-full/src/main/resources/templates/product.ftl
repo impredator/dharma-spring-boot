@@ -8,7 +8,7 @@
     <script type="text/javascript" src="/webjars/jquery/3.3.0/jquery.min.js"></script>
 </head>
 <body>
-<h1>PRODUCT LIST</h1>
+    <h1>PRODUCT LIST</h1>
     <#list products>
         <table class="table table-hover table-dark">
             <thead>

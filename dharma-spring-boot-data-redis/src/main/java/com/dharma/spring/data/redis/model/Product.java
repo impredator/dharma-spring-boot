@@ -1,24 +1,20 @@
-package com.dharma.demo.model;
+package com.dharma.spring.data.redis.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Table(name="product")
-public class Product implements Serializable {
+import org.springframework.data.redis.core.RedisHash;
 
-    @Id
-    @GeneratedValue
+@RedisHash("Product")
+public class Product implements Serializable {
     private Integer id;
-    @Column
     private String name;
-    @Column
     private Double price;
 
     public Product() {
     }
 
     public Product(String name, Double price) {
+        this.id = -1;
         this.name = name;
         this.price = price;
     }
@@ -51,5 +47,14 @@ public class Product implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

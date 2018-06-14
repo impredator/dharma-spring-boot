@@ -40,4 +40,5 @@ public class WebController {
         map.put("products", products);
         return "product";
     }
+
 }

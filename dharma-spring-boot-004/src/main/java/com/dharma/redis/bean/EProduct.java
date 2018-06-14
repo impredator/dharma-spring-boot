@@ -1,29 +1,34 @@
-package com.dharma.demo.model;
+package com.dharma.redis.bean;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name="product")
-public class Product implements Serializable {
+public class EProduct implements Serializable {
+
+    private static final long serialVersionUID = 7156526077883281623L;
 
     @Id
     @GeneratedValue
     private Integer id;
+
     @Column
     private String name;
+
     @Column
     private Double price;
 
-    public Product() {
+    public EProduct() {
     }
 
-    public Product(String name, Double price) {
+    public EProduct(String name, Double price) {
+        this.id = -1;
         this.name = name;
         this.price = price;
     }
 
-    public Product(Integer id, String name, Double price) {
+    public EProduct(Integer id, String name, Double price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -51,5 +56,14 @@ public class Product implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
