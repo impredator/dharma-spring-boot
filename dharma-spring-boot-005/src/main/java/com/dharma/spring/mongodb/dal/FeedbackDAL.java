@@ -17,4 +17,6 @@ public interface FeedbackDAL {
 	String getFeedbackSelection(String feedbackId, String key);
 
 	String addFeedbackSelections(String feedbackId, String key, String value);
+
+	String feedbackStarAnalysis();
 }

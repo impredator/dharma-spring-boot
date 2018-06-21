@@ -119,4 +119,9 @@ public class FeedbackController {
     public String addFeedbackSelectionWithKeyValue(@PathVariable String feedbackId, @PathVariable String key, @PathVariable String value) {
         return feedbackDAL.addFeedbackSelections(feedbackId, key, value);
     }
+
+    @RequestMapping(value = "/stats/count", method = RequestMethod.GET)
+    public String countFeedbackStars() {
+        return feedbackDAL.feedbackStarAnalysis();
+    }
 }

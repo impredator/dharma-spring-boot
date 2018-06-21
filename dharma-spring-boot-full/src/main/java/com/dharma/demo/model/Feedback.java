@@ -13,10 +13,12 @@ public class Feedback {
     @Id
     private String id;
     private String comment;
-    private Date creationDate = new Date();
-    private Map<String, String> selections = new HashMap<>();
+    private Date creationDate;
+    private Map<String, String> selections;
 
     public Feedback() {
+        creationDate = new Date();
+        selections = new HashMap<>();
     }
 
     public String getId() {
